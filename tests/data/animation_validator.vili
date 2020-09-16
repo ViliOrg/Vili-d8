@@ -1,0 +1,53 @@
+Meta: object {
+    properties: {
+        name: string,
+        clock: float {
+            optional: true
+        },
+        mode: string {
+            values: ["OneTime", "Loop", "Force"],
+            optional: true
+        }
+    }
+}
+
+Images: object {
+    properties: {
+        images: array {
+            items: union {
+                types: [integer, string]
+            },
+            min_size: 1
+        },
+        model: string
+    }
+}
+
+Groups: object {
+    items: object {
+        properties: {
+            content: array {
+                items: integer
+            },
+            clock: float {
+                optional: true
+            }
+        }
+    }
+}
+
+Animation: object {
+    items: {
+        code: array {
+            items: object {
+                properties: {
+                    command: string,
+                    time: float,
+                    group: string,
+                    repeat: integer,
+                    animation: string
+                }
+            }
+        }
+    }
+}

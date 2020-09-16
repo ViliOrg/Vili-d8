@@ -1,0 +1,25 @@
+Meta:
+    name: "Idle"
+    clock: 80
+    mode: "OneTime"
+
+Images:
+    images: ["1.png", "2.png", "3.png", "4.png"]
+
+Groups:
+    start:
+        content: [0]
+        clock: 160
+    
+    main:
+        content: [1, 2, 2, 1]
+
+    end:
+        content: [3]
+
+Animation:
+    code: [
+        play_group { group: "start" },
+        play_group { group: "main" },
+        play_group { group: "end" }
+    ]
