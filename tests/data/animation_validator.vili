@@ -19,7 +19,9 @@ Images: object {
             },
             min_size: 1
         },
-        model: string
+        model: string {
+            optional: true
+        }
     }
 }
 
@@ -42,10 +44,18 @@ Animation: object {
             items: object {
                 properties: {
                     command: string,
-                    time: float,
-                    group: string,
-                    repeat: integer,
-                    animation: string
+                    time: float {
+                        optional: true
+                    },
+                    group: string {
+                        optional: true
+                    },
+                    repeat: integer {
+                        optional: true
+                    },
+                    animation: string {
+                        optional: true
+                    }
                 }
             }
         }

@@ -1,0 +1,148 @@
+template Unit: string {
+    values: ["ViewPercentage", "ViewPixels", "ViewUnits", "ScenePixels", "SceneUnits"]
+}
+
+template Referential: string {
+    regex: "TopLeft|TopRight|Top|Left|Center|Right|BottomLeft|BottomRight|Bottom|(Referential<\s*(-?\d+(\.\d+)?)\s*,\s*(-?\d+(\.\d+)?)\s*>)"
+}
+
+template PositionTransformer: string {
+    values: ["Camera", "Parallax", "Position"]
+}
+
+template Color: union {
+    types: [
+        object {
+            properties: {
+                r: number {
+                    optional: true
+                },
+                g: number {
+                    optional: true
+                },
+                b: number {
+                    optional: true
+                },
+                a: number {
+                    optional: true
+                },
+                H: integer {
+                    optional: true
+                },
+                S: number {
+                    optional: true
+                },
+                V: number {
+                    optional: true
+                }
+            }
+        },
+        string
+    ]
+}
+
+template Sprite: object {
+    properties: {
+        path: string,
+        rect: object {
+            x: float,
+            y: float,
+            width: float,
+            height: float,
+            unit: Unit,
+            referential: Referential
+        },
+        rotation: float,
+        layer: integer,
+        zdepth: integer,
+        antiAliasing: boolean,
+        transform: object {
+            properties: {
+                x: PositionTransformer,
+                y: PositionTransformer
+            }
+        },
+        color: Color,
+        visible: boolean
+    }
+}
+
+template CollisionTag: union {
+    types: [
+        string {
+            min_length: 1
+        },
+        array {
+            items: string {
+                min_length: 1
+            }
+        }
+    ]
+}
+template Collision: object {
+    properties: {
+        unit: Unit,
+        points: array {
+            items: object {
+                properties: {
+                    x: number,
+                    y: number
+                }
+            }
+        },
+        tag: CollisionTag,
+        accept: CollisionTag,
+        reject: CollisionTag
+    }
+}
+
+template GameObject: object {
+    # See GameObject validator
+}
+
+Meta: object {
+    properties: {
+        name: string {
+            min_length: 1
+        }
+    }
+}
+
+View: object {
+    properties: {
+        size: float {
+            min: 0
+        },
+        position: object {
+            x: float
+            y: float
+            unit: Unit
+        },
+        referential: Referential
+    }
+
+}
+
+Sprites: object {
+    items: Sprite
+}
+
+Collisions: object {
+    items: Collision
+}
+
+GameObject: object {
+    items: GameObject
+}
+
+Script: object {
+    properties: {
+        source: string {
+            optional: true
+        },
+        sources: array {
+            items: string,
+            optional: true
+        }
+    }
+}

@@ -1,0 +1,53 @@
+Input: object {
+    items: object {
+        items: string {
+            regex: "((Idle|Hold|Pressed|Released):(Add|Backslash|Backspace|Comma|Dash|Delete|Divide|End|Equal|Escape|Home|Insert|LAlt|LBracket|LControl|LShift|Menu|Multiply|PageDown|PageUp|Pause|Period|Quote|RAlt|RBracket|RControl|Return|RShift|RSystem|Semicolon|Slash|Space|Subtract|Tab|Tilde|Left|Right|Up|Down|LMB|MMB|RMB|NumPad[0-9]|F(1[0-2]|[1-9])|[A-Z]|[0-9]))(\s*\+\s*(Idle|Hold|Pressed|Released):(Add|Backslash|Backspace|Comma|Dash|Delete|Divide|End|Equal|Escape|Home|Insert|LAlt|LBracket|LControl|LShift|Menu|Multiply|PageDown|PageUp|Pause|Period|Quote|RAlt|RBracket|RControl|Return|RShift|RSystem|Semicolon|Slash|Space|Subtract|Tab|Tilde|Left|Right|Up|Down|LMB|MMB|RMB|NumPad[0-9]|F(1[0-2]|[1-9])|[A-Z]|[0-9]))*"
+        }
+    }
+}
+
+template ResolutionDimension: union {
+    types: [
+        integer {
+            min: 0
+        },
+        string {
+            value: "fill"
+        }
+    ]
+}
+
+template WindowContext: object {
+    properties: {
+        width: ResolutionDimension,
+        height: ResolutionDimension,
+        fullscreen: boolean,
+        closeable: boolean,
+        resizeable: boolean,
+        titlebar: boolean,
+        title: string
+    }
+}
+
+Window: object {
+    properties: {
+        Game: WindowContext,
+        Editor: WindowContext
+    }
+}
+
+Framerate: object {
+    properties: {
+        framerateTarget: integer {
+            min: 0
+        },
+        vsync: boolean,
+        syncUpdateToRender: boolean
+    }
+}
+
+GameConfig: object {
+    properties: {
+        antiAliasing: boolean
+    }
+}

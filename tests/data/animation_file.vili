@@ -4,13 +4,13 @@ Meta:
     mode: "OneTime"
 
 Images:
-    images: ["1.png", "2.png", "3.png", "4.png"]
+    images: ["1.png", "2.png", "3.png", "4.png", true]
 
 Groups:
     start:
         content: [0]
         clock: 160
-    
+
     main:
         content: [1, 2, 2, 1]
 

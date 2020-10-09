@@ -5,10 +5,14 @@ project(vili-d8)
 set(VILI_D8_HEADERS
     include/vld8/templates.hpp
     include/vld8/validator.hpp
+    include/vld8/exceptions.hpp
 )
 set(VILI_D8_SOURCES
     src/templates.cpp
     src/validator.cpp
+    src/validator.inl
+    src/regex.inl
+    src/pattern.inl
 )
 
 add_subdirectory(extlibs/vili)
@@ -23,6 +27,7 @@ target_include_directories(vili
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 )
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
